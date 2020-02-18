@@ -81,3 +81,6 @@
 	path = payment_chile/payment_webpay
 	url = https://gitlab.com/dansanti/payment_webpay.git
 	branch = 12.0
+[submodule "payment_chile/payment_currency"]
+	path = payment_chile/payment_currency
+	url = https://gitlab.com/dansanti/payment_currency.git
