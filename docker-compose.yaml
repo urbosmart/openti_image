@@ -1,0 +1,56 @@
+version: '2'
+services:
+  nginx-proxy:
+    image: abiezeropenti/nginx:0.1.1
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  abiezerLocal:
+    image: abiezeropenti/openti:v0.0.7
+    depends_on:
+      - mydb
+    expose:
+      - "80"
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons    
+    environment:
+      - HOST=mydb
+      - USER=odoo
+      - PASSWORD=odoo
+      - VIRTUAL_HOST=abiezer.local,www.abiezer.local
+
+  web2:
+    image: abiezeropenti/openti:v0.0.7
+    depends_on:
+      - mydb
+    expose:
+      - "80"
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons
+    environment:
+      - HOST=mydb
+      - USER=odoo
+      - PASSWORD=odoo
+      - VIRTUAL_HOST=web2.local,www.web2.local
+
+
+  mydb:
+    image: postgres:10
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data/pgdata
+
+volumes:
+  odoo-web-data:
+  odoo-db-data:
