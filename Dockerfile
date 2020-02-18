@@ -17,7 +17,6 @@ COPY ./reporting-engine /root/.local/share/Odoo/addons/12.0
 COPY ./odooapps /root/.local/share/Odoo/addons/12.0
 COPY ./sale-workflow /root/.local/share/Odoo/addons/12.0
 COPY ./addons-konos /root/.local/share/Odoo/addons/12.0
-COPY ./export_chile /root/.local/share/Odoo/addons/12.0
 COPY ./payment_chile /root/.local/share/Odoo/addons/12.0
 COPY ./fac_chile /root/.local/share/Odoo/addons/12.0
 COPY ./web /root/.local/share/Odoo/addons/12.0
