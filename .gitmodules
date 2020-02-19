@@ -112,7 +112,3 @@
 	path = fac_chile/l10n_cl_fe
 	url = https://gitlab.com/dansanti/l10n_cl_fe.git
 	branch = 12.0
-[submodule "odoo"]
-	path = odoo
-	url = https://github.com/odoo/odoo.git
-	branch = 12.0
