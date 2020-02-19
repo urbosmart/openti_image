@@ -11,17 +11,17 @@ COPY ./account-fiscal-rule /root/.local/share/Odoo/addons/12.0
 COPY ./account-reconcile /root/.local/share/Odoo/addons/12.0
 COPY ./account-consolidation /root/.local/share/Odoo/addons/12.0
 COPY ./account-invoice-reporting /root/.local/share/Odoo/addons/12.0
-
 COPY ./pos /root/.local/share/Odoo/addons/12.0
 COPY ./reporting-engine /root/.local/share/Odoo/addons/12.0
 COPY ./odooapps /root/.local/share/Odoo/addons/12.0
 COPY ./sale-workflow /root/.local/share/Odoo/addons/12.0
 COPY ./addons-konos /root/.local/share/Odoo/addons/12.0
 COPY ./payment_chile /root/.local/share/Odoo/addons/12.0
-COPY ./fac_chile /root/.local/share/Odoo/addons/12.0
 COPY ./web /root/.local/share/Odoo/addons/12.0
 COPY ./website /root/.local/share/Odoo/addons/12.0
-COPY ./openti_custom_addons /root/.local/share/Odoo/addons/12.0
 COPY ./sale-workflow /root/.local/share/Odoo/addons/12.0
+COPY ./openti_custom_addons /root/.local/share/Odoo/addons/12.0
+COPY ./fac_chile /root/.local/share/Odoo/addons/12.0
+
 RUN python3 -m pip install wheel && \
   python3 -m pip install -r /root/.local/share/Odoo/addons/12.0/l10n_cl_fe/requirements.txt

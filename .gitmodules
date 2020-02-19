@@ -88,10 +88,6 @@
 	path = website
 	url = https://github.com/OCA/website.git
 	branch = 12.0
-[submodule "fac_chile/l10_cl_fe"]
-	path = fac_chile/l10_cl_fe
-	url = https://gitlab.com/dansanti/l10n_cl_fe.git
-	branch = 12.0
 [submodule "fac_chile/l10n_cl_dte_exportacion"]
 	path = fac_chile/l10n_cl_dte_exportacion
 	url = https://gitlab.com/dansanti/l10n_cl_dte_exportacion.git
@@ -111,4 +107,8 @@
 [submodule "fac_chile/l10n_cl_dte_point_of_sale"]
 	path = fac_chile/l10n_cl_dte_point_of_sale
 	url = https://gitlab.com/dansanti/l10n_cl_dte_point_of_sale.git
+	branch = 12.0
+[submodule "fac_chile/l10n_cl_fe"]
+	path = fac_chile/l10n_cl_fe
+	url = https://gitlab.com/dansanti/l10n_cl_fe.git
 	branch = 12.0
