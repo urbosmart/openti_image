@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="/home/extra_addons/fac_chile/l10n_cl_ic.list">
+      <field name="name">/home/extra_addons/fac_chile/l10n_cl_ic list</field>
+      <field name="model">/home/extra_addons/fac_chile/l10n_cl_ic./home/extra_addons/fac_chile/l10n_cl_ic</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="/home/extra_addons/fac_chile/l10n_cl_ic.action_window">
+      <field name="name">/home/extra_addons/fac_chile/l10n_cl_ic window</field>
+      <field name="res_model">/home/extra_addons/fac_chile/l10n_cl_ic./home/extra_addons/fac_chile/l10n_cl_ic</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="/home/extra_addons/fac_chile/l10n_cl_ic.action_server">
+      <field name="name">/home/extra_addons/fac_chile/l10n_cl_ic server</field>
+      <field name="model_id" ref="model_/home/extra_addons/fac_chile/l10n_cl_ic_/home/extra_addons/fac_chile/l10n_cl_ic"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="/home/extra_addons/fac_chile/l10n_cl_ic" id="/home/extra_addons/fac_chile/l10n_cl_ic.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="/home/extra_addons/fac_chile/l10n_cl_ic.menu_1" parent="/home/extra_addons/fac_chile/l10n_cl_ic.menu_root"/>
+    <menuitem name="Menu 2" id="/home/extra_addons/fac_chile/l10n_cl_ic.menu_2" parent="/home/extra_addons/fac_chile/l10n_cl_ic.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="/home/extra_addons/fac_chile/l10n_cl_ic.menu_1_list" parent="/home/extra_addons/fac_chile/l10n_cl_ic.menu_1"
+              action="/home/extra_addons/fac_chile/l10n_cl_ic.action_window"/>
+    <menuitem name="Server to list" id="/home/extra_addons/fac_chile/l10n_cl_ic" parent="/home/extra_addons/fac_chile/l10n_cl_ic.menu_2"
+              action="/home/extra_addons/fac_chile/l10n_cl_ic.action_server"/>
+    -->
+  </data>
+</odoo>
