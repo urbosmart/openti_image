@@ -1,6 +1,3 @@
-[submodule "openti_custom_addons"]
-	path = openti_custom_addons
-	url = https://github.com/UrbosSmartCity/openti_custom_addons.git
 [submodule "web"]
 	path = web
 	url = https://github.com/OCA/web.git
