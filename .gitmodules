@@ -113,3 +113,6 @@
 	path = localization_openti/openti
 	url = https://github.com/UrbosSmartCity/openti.git
 	branch = 12.0
+[submodule "localization_openti/tecnopti"]
+	path = localization_openti/tecnopti
+	url = https://github.com/abiezersifontes/tecnopti.git
