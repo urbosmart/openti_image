@@ -9,7 +9,7 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
   abiezerLocal:
-    image: abiezeropenti/openti:v0.0.8.6
+    image: abiezeropenti/openti:v0.0.8.9.12
     depends_on:
       - mydb
     expose:

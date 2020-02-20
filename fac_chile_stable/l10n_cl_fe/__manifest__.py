@@ -101,8 +101,7 @@ Facturación Electrónica para Chile. Mayor información en https://odoocoop.cl
             'data/sii.regional.offices.csv',
             'data/res.currency.csv',
             'security/state_manager.xml',
-            'security/ir.model.access.csv',
-            'views/commissions_invoice_clearence.xml'
+            'security/ir.model.access.csv'
     ],
     'qweb': [
         "static/src/xml/base.xml",

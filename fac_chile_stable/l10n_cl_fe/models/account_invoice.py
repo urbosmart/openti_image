@@ -384,10 +384,6 @@ class AccountInvoice(models.Model):
         string="Recepción del Cliente",
         readonly=True,
     )
-    commissions = fields.Many2many(
-        'commissions.invoice.clearence',
-        string="Comisiones"
-    )
 
 
     @api.onchange('invoice_line_ids')
@@ -1806,7 +1802,6 @@ a VAT."""))
                 ref_lines.append(ref_line)
                 lin_ref += 1
         dte['Detalle'] = invoice_lines['Detalle']
-        dte['Comisiones'] = self._get_commissions()
         dte['DscRcgGlobal'] = self._gdr()
         dte['Referencia'] = ref_lines
         dte['CodIVANoRec'] = self.no_rec_code
@@ -1828,17 +1823,6 @@ a VAT."""))
             "Emisor": emisor,
             "firma_electronica": signature_id.parametros_firma(),
         }
-
-    def _get_commissions(self):
-        Commissions = {}
-        Commissions['TipoMovim'] = self.commissions.TipoMovim
-        Commissions['Glosa'] = self.commissions.Glosa
-        Commissions['TasaComision'] = self.commissions.TasaComision
-        Commissions['ValComNeto'] = self.commissions.ValComNeto
-        Commissions['ValComExe'] = self.commissions.ValComExe
-        Commissions['ValComIVA'] = self.commissions.ValComIVA
-
-        return Commissions
 
     def _timbrar(self, n_atencion=None):
         folio = self.get_folio()

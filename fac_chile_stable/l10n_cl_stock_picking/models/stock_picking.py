@@ -33,11 +33,7 @@ class StockPicking(models.Model):
             rec.amount_total = amount_untaxed + amount_tax
 
     def set_use_document(self):
-        #return (self.picking_type_id and self.picking_type_id.code != 'incoming')
-        import pdb; pdb.set_trace()
-        if(self.picking_type_id.code != 'incoming'):
-            return True
-        return False
+        return (self.picking_type_id and self.picking_type_id.code != 'incoming')
 
     amount_untaxed = fields.Monetary(
             compute='_compute_amount',
