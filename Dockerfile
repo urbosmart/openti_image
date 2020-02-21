@@ -23,5 +23,4 @@ COPY ./sale-workflow /root/.local/share/Odoo/addons/12.0
 COPY ./fac_chile /root/.local/share/Odoo/addons/12.0
 RUN python3 -m pip install wheel && \
   python3 -m pip install -r /root/.local/share/Odoo/addons/12.0/l10n_cl_fe/requirements.txt
-COPY ./openti_custom_addons /root/.local/share/Odoo/addons/12.0
-
+COPY ./localization_openti /root/.local/share/Odoo/addons/12.0
