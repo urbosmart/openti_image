@@ -1,4 +1,4 @@
-FROM odoo:12.0
+FROM abiezeropenti/odoo:1
 USER root
 COPY ./account-analytic /root/.local/share/Odoo/addons/12.0
 COPY ./account-financial-tools /root/.local/share/Odoo/addons/12.0
