@@ -1,4 +1,4 @@
-FROM abiezeropenti/odoo:1
+FROM odoo:12.0
 USER root
 COPY ./account-analytic /root/.local/share/Odoo/addons/12.0
 COPY ./account-financial-tools /root/.local/share/Odoo/addons/12.0
@@ -21,6 +21,6 @@ COPY ./web /root/.local/share/Odoo/addons/12.0
 COPY ./website /root/.local/share/Odoo/addons/12.0
 COPY ./sale-workflow /root/.local/share/Odoo/addons/12.0
 COPY ./fac_chile /root/.local/share/Odoo/addons/12.0
-RUN python3 -m pip install wheel && \
-  python3 -m pip install -r /root/.local/share/Odoo/addons/12.0/l10n_cl_fe/requirements.txt
 COPY ./localization_openti /root/.local/share/Odoo/addons/12.0
+RUN python3 -m pip install wheel && \
+  python3 -m pip install -r /root/.local/share/Odoo/addons/12.0/openti/requirements.txt
