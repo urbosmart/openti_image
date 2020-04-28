@@ -1,28 +1,29 @@
 
 FROM odoo:12.0
 USER root
-COPY ./account-analytic /root/.local/share/Odoo/addons/12.0
-COPY ./account-financial-tools /root/.local/share/Odoo/addons/12.0
-COPY ./account-financial-reporting /root/.local/share/Odoo/addons/12.0
-COPY ./account-reconcile /root/.local/share/Odoo/addons/12.0
-COPY ./account-budgeting /root/.local/share/Odoo/addons/12.0
-COPY ./account-payment /root/.local/share/Odoo/addons/12.0
-COPY ./account-closing /root/.local/share/Odoo/addons/12.0
-COPY ./account-fiscal-rule /root/.local/share/Odoo/addons/12.0
-COPY ./account-reconcile /root/.local/share/Odoo/addons/12.0
-COPY ./account-consolidation /root/.local/share/Odoo/addons/12.0
-COPY ./account-invoice-reporting /root/.local/share/Odoo/addons/12.0
-COPY ./pos /root/.local/share/Odoo/addons/12.0
-COPY ./reporting-engine /root/.local/share/Odoo/addons/12.0
-COPY ./odooapps /root/.local/share/Odoo/addons/12.0
-COPY ./sale-workflow /root/.local/share/Odoo/addons/12.0
-COPY ./addons-konos /root/.local/share/Odoo/addons/12.0
-COPY ./payment_chile /root/.local/share/Odoo/addons/12.0
-COPY ./web /root/.local/share/Odoo/addons/12.0
-COPY ./website /root/.local/share/Odoo/addons/12.0
-COPY ./sale-workflow /root/.local/share/Odoo/addons/12.0
-COPY ./fac_chile /root/.local/share/Odoo/addons/12.0
-COPY ./localization_openti /root/.local/share/Odoo/addons/12.0
+# changing /usr/lib/python3/dist-packages/odoo/addons for /root/.local/share/Odoo/addons/12.0
+COPY ./account-analytic /usr/lib/python3/dist-packages/odoo/addons
+COPY ./account-financial-tools /usr/lib/python3/dist-packages/odoo/addons
+COPY ./account-financial-reporting /usr/lib/python3/dist-packages/odoo/addons
+COPY ./account-reconcile /usr/lib/python3/dist-packages/odoo/addons
+COPY ./account-budgeting /usr/lib/python3/dist-packages/odoo/addons
+COPY ./account-payment /usr/lib/python3/dist-packages/odoo/addons
+COPY ./account-closing /usr/lib/python3/dist-packages/odoo/addons
+COPY ./account-fiscal-rule /usr/lib/python3/dist-packages/odoo/addons
+COPY ./account-reconcile /usr/lib/python3/dist-packages/odoo/addons
+COPY ./account-consolidation /usr/lib/python3/dist-packages/odoo/addons
+COPY ./account-invoice-reporting /usr/lib/python3/dist-packages/odoo/addons
+COPY ./pos /usr/lib/python3/dist-packages/odoo/addons
+COPY ./reporting-engine /usr/lib/python3/dist-packages/odoo/addons
+COPY ./odooapps /usr/lib/python3/dist-packages/odoo/addons
+COPY ./sale-workflow /usr/lib/python3/dist-packages/odoo/addons
+COPY ./addons-konos /usr/lib/python3/dist-packages/odoo/addons
+COPY ./payment_chile /usr/lib/python3/dist-packages/odoo/addons
+COPY ./web /usr/lib/python3/dist-packages/odoo/addons
+COPY ./website /usr/lib/python3/dist-packages/odoo/addons
+COPY ./sale-workflow /usr/lib/python3/dist-packages/odoo/addons
+COPY ./fac_chile /usr/lib/python3/dist-packages/odoo/addons
+COPY ./localization_openti /usr/lib/python3/dist-packages/odoo/addons
 RUN apt-get update && \ 
-  apt-get install -y python3-dev libxml2-dev libxmlsec1 libxmlsec1-dev libxmlsec1-openssl libssl-dev  pkg-config libgirepository1.0-dev
-RUN python3 -m pip install -r /root/.local/share/Odoo/addons/12.0/openti/requirements.txt
+  apt-get install -y python3-dev libxml2-dev libxmlsec1 libxmlsec1-dev libxmlsec1-openssl libssl-dev pkg-config libgirepository1.0-dev
+RUN python3 -m pip install -r /usr/lib/python3/dist-packages/odoo/addons/openti/requirements.txt

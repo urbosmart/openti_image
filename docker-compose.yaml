@@ -9,23 +9,23 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
   abiezerLocal:
-    image: abiezeropenti/openti:v0.0.8.15
+    image: abiezeropenti/openti:v0.0.8.16.7
     depends_on:
       - mydb
     expose:
-      - "80"
+      - 80
     volumes:
       - odoo-web-data:/var/lib/odoo
-      - ./config:/etc/odoo
-      - ./addons:/mnt/extra-addons    
+#      - ./config:/etc/odoo
+#      - ./addons:/mnt/extra-addons
     environment:
       - HOST=mydb
       - USER=odoo
       - PASSWORD=odoo
-      - VIRTUAL_HOST=abiezer.local,www.abiezer.local
+      - VIRTUAL_HOST=abiezer.local
 
   mydb:
-    image: postgres:10
+    image: postgres:10.0
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_PASSWORD=odoo

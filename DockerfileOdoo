@@ -1,5 +1,7 @@
-FROM debian:stretch
+FROM debian:stretch-slim
 MAINTAINER Odoo S.A. <info@odoo.com>
+
+SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
 
 # Generate locale C.UTF-8 for postgres and general locale data
 ENV LANG C.UTF-8
@@ -8,8 +10,7 @@ ENV LANG C.UTF-8
 RUN echo 'deb http://deb.debian.org/debian stretch-backports main' > /etc/apt/sources.list.d/backports.list
 
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
-RUN set -x; \
-        apt-get update \
+RUN apt-get update \
         && apt-get install -y --no-install-recommends \
             ca-certificates \
             curl \
@@ -37,42 +38,41 @@ RUN set -x; \
         && rm -rf /var/lib/apt/lists/* wkhtmltox.deb
 
 # install latest postgresql-client
-RUN set -x; \
-        echo 'deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main' > /etc/apt/sources.list.d/pgdg.list \
-        && export GNUPGHOME="$(mktemp -d)" \
+RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main' > /etc/apt/sources.list.d/pgdg.list \
+        && GNUPGHOME="$(mktemp -d)" \
+        && export GNUPGHOME \
         && repokey='B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8' \
         && gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "${repokey}" \
         && gpg --batch --armor --export "${repokey}" > /etc/apt/trusted.gpg.d/pgdg.gpg.asc \
         && gpgconf --kill all \
         && rm -rf "$GNUPGHOME" \
         && apt-get update  \
-        && apt-get install -y postgresql-client \
+        && apt-get install --no-install-recommends -y postgresql-client \
+        && rm -f /etc/apt/sources.list.d/pgdg.list \
         && rm -rf /var/lib/apt/lists/*
 
 # Install rtlcss (on Debian stretch)
-RUN set -x;\
-    echo "deb http://deb.nodesource.com/node_8.x stretch main" > /etc/apt/sources.list.d/nodesource.list \
-    && export GNUPGHOME="$(mktemp -d)" \
+RUN echo "deb http://deb.nodesource.com/node_8.x stretch main" > /etc/apt/sources.list.d/nodesource.list \
+    && GNUPGHOME="$(mktemp -d)" \
+    && export GNUPGHOME \
     && repokey='9FD3B784BC1C6FC31A8A0A1C1655A0AB68576280' \
     && gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "${repokey}" \
     && gpg --batch --armor --export "${repokey}" > /etc/apt/trusted.gpg.d/nodejs.gpg.asc \
     && gpgconf --kill all \
     && rm -rf "$GNUPGHOME" \
     && apt-get update \
-    && apt-get install -y nodejs \
+    && apt-get install --no-install-recommends -y nodejs \
     && npm install -g rtlcss \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Odoo
 ENV ODOO_VERSION 12.0
-ARG ODOO_RELEASE=20200121
-ARG ODOO_SHA=cb0bcb5d239983468c2e3b3f7cf17f58df820b1c
-RUN set -x; \
-        curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/odoo_${ODOO_VERSION}.${ODOO_RELEASE}_all.deb \
+ARG ODOO_RELEASE=20200417
+ARG ODOO_SHA=ca4a7485b0b75850ffe1458a8f3266839400a501
+RUN curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/odoo_${ODOO_VERSION}.${ODOO_RELEASE}_all.deb \
         && echo "${ODOO_SHA} odoo.deb" | sha1sum -c - \
-        && dpkg --force-depends -i odoo.deb \
         && apt-get update \
-        && apt-get -y install -f --no-install-recommends \
+        && apt-get -y install --no-install-recommends ./odoo.deb \
         && rm -rf /var/lib/apt/lists/* odoo.deb
 
 # Copy entrypoint script and Odoo configuration file
@@ -86,38 +86,38 @@ RUN chown odoo /etc/odoo/odoo.conf \
 VOLUME ["/var/lib/odoo", "/mnt/extra-addons"]
 
 # Expose Odoo services
-EXPOSE 8069 8071
+EXPOSE 8069 8071 8072
 
 # Set the default config file
 ENV ODOO_RC /etc/odoo/odoo.conf
 
 COPY wait-for-psql.py /usr/local/bin/wait-for-psql.py
 
-#Copy Aditional Modules
-COPY ./account-analytic /root/.local/share/Odoo/addons/12.0
-COPY ./account-financial-tools /root/.local/share/Odoo/addons/12.0
-COPY ./account-financial-reporting /root/.local/share/Odoo/addons/12.0
-COPY ./account-reconcile /root/.local/share/Odoo/addons/12.0
-COPY ./account-budgeting /root/.local/share/Odoo/addons/12.0
-COPY ./account-payment /root/.local/share/Odoo/addons/12.0
-COPY ./account-closing /root/.local/share/Odoo/addons/12.0
-COPY ./account-fiscal-rule /root/.local/share/Odoo/addons/12.0
-COPY ./account-reconcile /root/.local/share/Odoo/addons/12.0
-COPY ./account-consolidation /root/.local/share/Odoo/addons/12.0
-COPY ./account-invoice-reporting /root/.local/share/Odoo/addons/12.0
-COPY ./pos /root/.local/share/Odoo/addons/12.0
-COPY ./reporting-engine /root/.local/share/Odoo/addons/12.0
-COPY ./odooapps /root/.local/share/Odoo/addons/12.0
-COPY ./sale-workflow /root/.local/share/Odoo/addons/12.0
-COPY ./addons-konos /root/.local/share/Odoo/addons/12.0
-COPY ./payment_chile /root/.local/share/Odoo/addons/12.0
-COPY ./web /root/.local/share/Odoo/addons/12.0
-COPY ./website /root/.local/share/Odoo/addons/12.0
-COPY ./sale-workflow /root/.local/share/Odoo/addons/12.0
-COPY ./fac_chile /root/.local/share/Odoo/addons/12.0
-RUN python3 -m pip install wheel && \
-  python3 -m pip install -r /root/.local/share/Odoo/addons/12.0/l10n_cl_fe/requirements.txt
-COPY ./localization_openti /root/.local/share/Odoo/addons/12.0
+COPY ./account-analytic /usr/lib/python3/dist-packages/odoo/addons
+COPY ./account-financial-tools /usr/lib/python3/dist-packages/odoo/addons
+COPY ./account-financial-reporting /usr/lib/python3/dist-packages/odoo/addons
+COPY ./account-reconcile /usr/lib/python3/dist-packages/odoo/addons
+COPY ./account-budgeting /usr/lib/python3/dist-packages/odoo/addons
+COPY ./account-payment /usr/lib/python3/dist-packages/odoo/addons
+COPY ./account-closing /usr/lib/python3/dist-packages/odoo/addons
+COPY ./account-fiscal-rule /usr/lib/python3/dist-packages/odoo/addons
+COPY ./account-reconcile /usr/lib/python3/dist-packages/odoo/addons
+COPY ./account-consolidation /usr/lib/python3/dist-packages/odoo/addons
+COPY ./account-invoice-reporting /usr/lib/python3/dist-packages/odoo/addons
+COPY ./pos /usr/lib/python3/dist-packages/odoo/addons
+COPY ./reporting-engine /usr/lib/python3/dist-packages/odoo/addons
+COPY ./odooapps /usr/lib/python3/dist-packages/odoo/addons
+COPY ./sale-workflow /usr/lib/python3/dist-packages/odoo/addons
+COPY ./addons-konos /usr/lib/python3/dist-packages/odoo/addons
+COPY ./payment_chile /usr/lib/python3/dist-packages/odoo/addons
+COPY ./web /usr/lib/python3/dist-packages/odoo/addons
+COPY ./website /usr/lib/python3/dist-packages/odoo/addons
+COPY ./sale-workflow /usr/lib/python3/dist-packages/odoo/addons
+COPY ./fac_chile /usr/lib/python3/dist-packages/odoo/addons
+COPY ./localization_openti /usr/lib/python3/dist-packages/odoo/addons
+RUN apt-get update && \
+  apt-get install -y python3-dev libxml2-dev libxmlsec1 libxmlsec1-dev libxmlsec1-openssl libssl-dev pkg-config libgirepository1.0-dev
+RUN python3 -m pip install -r /usr/lib/python3/dist-packages/odoo/addons/openti/requirements.txt
 
 # Set default user when running the container
 USER odoo
