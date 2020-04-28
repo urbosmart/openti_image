@@ -116,3 +116,15 @@
 [submodule "localization_openti/tecnopti"]
 	path = localization_openti/tecnopti
 	url = https://github.com/abiezersifontes/tecnopti.git
+[submodule "contract"]
+	path = contract
+	url = https://github.com/OCA/contract.git
+	branch = 12.0
+[submodule "project"]
+	path = project
+	url = https://github.com/OCA/project
+	branch = 12.0
+[submodule "bank-payment"]
+	path = bank-payment
+	url = https://github.com/OCA/bank-payment.git
+	branch = 12.0
