@@ -262,7 +262,7 @@ ofxparse==0.16
 olefile==0.46
 opencv-contrib-python==4.1.0.25
   - numpy [required: >=1.11.1, installed: 1.16.4]
-opencv-python==4.1.0.25
+opencv-python==4.1.1.26
   - numpy [required: >=1.11.1, installed: 1.16.4]
 phonenumbers==8.10.14
 pipdeptree==0.13.2
@@ -1270,7 +1270,7 @@ ofxparse==0.16
 olefile==0.46
 opencv-contrib-python==4.1.0.25
   - numpy [required: >=1.11.1, installed: 1.16.4]
-opencv-python==4.1.0.25
+opencv-python==4.1.1.26
   - numpy [required: >=1.11.1, installed: 1.16.4]
 phonenumbers==8.10.14
 pipdeptree==0.13.2
