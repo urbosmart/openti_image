@@ -290,7 +290,7 @@ python-debian==0.1.30
   - six [required: Any, installed: 1.13.0]
 python-debianbts==3.0.1
   - pysimplesoap [required: Any, installed: 1.16.2]
-python-ldap==3.2.0
+python-ldap==3.4.0
   - pyasn1 [required: >=0.3.7, installed: 0.4.5]
   - pyasn1-modules [required: >=0.1.5, installed: 0.2.5]
     - pyasn1 [required: >=0.4.1,<0.5.0, installed: 0.4.5]
@@ -1298,7 +1298,7 @@ python-debian==0.1.30
   - six [required: Any, installed: 1.13.0]
 python-debianbts==3.0.1
   - pysimplesoap [required: Any, installed: 1.16.2]
-python-ldap==3.2.0
+python-ldap==3.4.0
   - pyasn1 [required: >=0.3.7, installed: 0.4.5]
   - pyasn1-modules [required: >=0.1.5, installed: 0.2.5]
     - pyasn1 [required: >=0.4.1,<0.5.0, installed: 0.4.5]
