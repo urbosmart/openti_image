@@ -282,7 +282,7 @@ PyGObject==3.36.0
 pyinotify==0.9.6
 pyldap==2.4.28
   - setuptools [required: Any, installed: 33.1.1]
-PyPDF2==1.26.0
+PyPDF2==1.27.5
 pyserial==3.1.1
 pytemperature==1.0
 python-debian==0.1.30
@@ -1290,7 +1290,7 @@ PyGObject==3.36.0
 pyinotify==0.9.6
 pyldap==2.4.28
   - setuptools [required: Any, installed: 33.1.1]
-PyPDF2==1.26.0
+PyPDF2==1.27.5
 pyserial==3.1.1
 pytemperature==1.0
 python-debian==0.1.30
